@@ -443,6 +443,7 @@ std::set<uint32_t> AdvancedSHEBase<Element>::GenerateIndices2nComplex(usint batc
 template <class Element>
 std::set<uint32_t> AdvancedSHEBase<Element>::GenerateIndices2nComplexRows(usint rowSize, usint m) const {
     uint32_t colSize = m / (4 * rowSize);
+    if (colSize == 0) return {}; // no rotations required.
     auto isize       = static_cast<size_t>(std::ceil(std::log2(colSize)));
 
     std::set<uint32_t> indices;
